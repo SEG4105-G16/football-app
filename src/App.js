@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import Highlights from './components/Highlights';
 import WatchScreen from './components/WatchScreen';
+
+import ApiService from './api/api';
 import LoginPage from './components/Login-page/LoginPage';
 import { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
@@ -17,6 +19,8 @@ import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
 
 function App() {
+
+  const apiService = new ApiService();
   const auth = getAuth()
   const [user, setUser] = useState(auth.currentUser);
 
@@ -124,6 +128,7 @@ function App() {
     </Router>
 
   )
+
 
 }
 
