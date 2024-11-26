@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ApiService from "../api/api";
 import TeamStat from "./TeamStat";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const TeamPage = () => {
   const { teamId } = useParams();
@@ -394,13 +395,21 @@ const TeamPage = () => {
           <SimpleGrid cols={3} verticalSpacing="40px" mt="20px">
             {teamRoster.map((player, index) => (
               <Group key={index} align="center">
-                <Image
+                <LazyLoadImage
+                  alt={player.name}
+                  src={player.photo} // Use the flag URL
+                  effect="blur" // Blur effect while loading
+                  width="50"
+                  height="50"
+                  style={{ borderRadius: '3rem' }}
+                />
+                {/* <Image
                   src={player.photo}
                   alt={player.name}
                   width={50}
                   height={50}
                   radius="xl"
-                />
+                /> */}
                 <Stack spacing={0}>
                   <Text weight={500}>{player.name}</Text>
                   <Text size="sm" c="dimmed">
